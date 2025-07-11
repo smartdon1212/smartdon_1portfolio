@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aurorux Project – Smartdon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefefe;
+      color: #222;
+    }
+
+    header {
+      background-color: #0a3d62;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+header img{
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: #0a3d62;
+    }
+
+    .video-container {
+      margin: 20px 0;
+    }
+
+    video {
+       width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .talk {
+      background-color: #f0f4f7;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    .comment-section {
+      background-color: #eef2f3;
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-radius: 10px;
+    }
+
+    .comment-section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #0a3d62;
+    }
+
+    .comment-section input,
+    .comment-section textarea {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .comment-section button {
+      padding: 10px 20px;
+      background-color: #0a3d62;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .comment-section button:hover {
+      background-color: #054179;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-link a {
+      color: #0a3d62;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #f8f9fa;
+      margin-top: 40px;
+      color: #444;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="Aurorux.png" alt="">
+    <h1>Aurorux Project</h1>
+    <p>Multifunctional Device – Smartdon Robotics & Automation</p>
+  </header>
+
+  <section>
+    <h2>About Aurorux</h2>
+    <p>
+      Aurorux is a multifunctional, solar-powered device that brings together five powerful features: a fan, lamp, Bluetooth speaker, power bank, and clock. Designed for adventurers, travelers, and areas with limited power supply, Aurorux solves real-life challenges in a compact and elegant way.
+    </p>
+
+    <div class="video-container">
+      <video controls>
+        <source src="Aurorux.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="talk">
+      <h3>My Talk on Aurorux</h3>
+      <p>
+        "Aurorux came from a simple problem — how to survive in places with no light — and I brought these functions together to run on both solar and electricity. It's for camp, students, and anyone who wants power, light."
+      <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;~ @Smartdon</p>
+    </div>
+  </section>
+
+  <section id="comments" class="comment-section">
+    <h2>Leave a Comment</h2>
+    <form action="https://formspree.io/f/xnnvyobz" method="POST">
+      <input type="text" name="name" placeholder="Your Name Here" required />
+      <input type="email" name="email" placeholder="Your Email Here" required />
+      <textarea name="message" rows="4" placeholder="Type your comment here..." required></textarea>
+      <button type="submit">COMMENT</button>
+    </form>
+  </section>
+
+  <div class="back-link">
+    <a href="index.html">← Back to Portfolio</a>
+  </div>
+
+  <footer>
+    © 2025 Smartdon Robotics, Automation and Software Solutions (SRASS)
+  </footer>
+
+</body>
+</html>
