@@ -1,109 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="ETNSFJAETGAFe8TQRFfJj_HFQGzFM5YC5oS5BvIWTeE" />
   <title>Smartdon Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #0e0e0e;
+      --accent: #0a3d62;
+      --bg: #f7f9fa;
+      --text: #222;
+      --card: #fff;
+      --glass: rgba(255, 255, 255, 0.7);
+      --shadow: 0 4px 24px rgba(10, 61, 98, 0.08);
+      --gradient: linear-gradient(135deg, #0a3d62 0%, #00c6ff 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f2f5;
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      scroll-behavior: smooth;
     }
+
     header {
-      background-color: #0e0e0e;
-      color: white;
-      padding: 2rem;
+      background: var(--gradient);
+      color: #fff;
+      padding: 2.5rem 2rem 2rem 2rem;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 2rem;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: fadeInDown 1s cubic-bezier(.77, 0, .18, 1) 0.2s both;
     }
+
     header img {
-      height: 100px;
+      height: 90px;
+      width: 120px;
+      border-radius: 50%;
+      box-shadow: 0 2px 16px rgba(10, 61, 98, 0.12);
+      border: 3px solid var(--accent);
+      background: #fff;
+      transition: transform 0.4s cubic-bezier(.77, 0, .18, 1);
     }
+
+    header img:hover {
+      transform: scale(1.08) rotate(-3deg);
+    }
+
     header h1 {
-      margin: 0;
-      font-size: 1.8rem;
+      margin: 0 0 0.3rem 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(10, 61, 98, 0.08);
+      animation: fadeInLeft 1.2s cubic-bezier(.77, 0, .18, 1) 0.4s both;
     }
+
     header p {
       margin: 0;
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      animation: fadeInLeft 1.2s cubic-bezier(.77, 0, .18, 1) 0.6s both;
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      transition: max-height 0.4s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 1rem;
+      z-index: 20;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 28px;
+      height: 4px;
+      margin: 4px 0;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.4s;
+    }
+
+    @media (max-width: 1200px) {
+      nav {
+        margin-left: 0;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: var(--gradient);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0.5rem 2rem 1rem 2rem;
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(10, 61, 98, 0.10);
+        border-radius: 0 0 18px 18px;
+        transition: max-height 0.4s cubic-bezier(.77, 0, .18, 1);
+      }
+
+      .nav-links.open {
+        max-height: 500px;
+        transition: max-height 0.4s cubic-bezier(.77, 0, .18, 1);
+      }
+
+      .nav-links a {
+        width: 100%;
+        padding: 1rem 0;
+        border-radius: 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 1400px) and (min-width: 1201px) {
+      .nav-links {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        max-width: 100vw;
+        gap: 1rem;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+        font-size: 1rem;
+        padding: 0.5rem 0.8rem;
+      }
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
       font-size: 1rem;
-      color: #ccc;
+      padding: 0.5rem 1.2rem;
+      border-radius: 24px;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     }
-    .section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+
+    nav a:hover {
+      background: #fff;
+      color: var(--accent);
+      box-shadow: 0 2px 12px rgba(10, 61, 98, 0.10);
     }
-    .section h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 0.5rem;
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      background: var(--gradient);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 1rem 2rem 1rem;
+      border-radius: 0 0 32px 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 24px rgba(10, 61, 98, 0.18);
+      animation: fadeInDown 1.2s cubic-bezier(.77, 0, .18, 1) 0.2s both;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: #e0e0e0;
+      animation: fadeInLeft 1.2s cubic-bezier(.77, 0, .18, 1) 0.4s both;
+    }
+
+    .hero .cta-btn {
+      background: #fff;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 32px;
+      border: none;
+      box-shadow: 0 2px 16px rgba(10, 61, 98, 0.10);
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+      animation: fadeInLeft 1.2s cubic-bezier(.77, 0, .18, 1) 0.6s both;
+    }
+
+    .hero .cta-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .glass-card {
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      margin: 1.5rem 0;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(10, 61, 98, 0.08);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .glass-card:hover {
+      box-shadow: 0 8px 32px rgba(10, 61, 98, 0.16);
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .service-card {
+      flex: 1 1 220px;
+      min-width: 220px;
+      max-width: 320px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem 1.2rem;
+      text-align: center;
+      transition: box-shadow 0.3s, transform 0.3s;
+      border: 1px solid rgba(10, 61, 98, 0.06);
+    }
+
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(10, 61, 98, 0.16);
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--accent);
       margin-bottom: 1rem;
     }
-    ul {
-      padding-left: 1.2rem;
+
+    .portfolio {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
     }
+
+    .project-card {
+      flex: 1 1 260px;
+      min-width: 260px;
+      max-width: 350px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: box-shadow 0.3s, transform 0.3s;
+      border: 1px solid rgba(10, 61, 98, 0.06);
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(10, 61, 98, 0.16);
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      height: 160px;
+      background: #eaeaea;
+    }
+
+    .project-card h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .project-card p {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-card a {
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: underline;
+      margin-top: auto;
+    }
+
+    .project-card a:hover {
+      color: #0056b3;
+    }
+
+    .timeline {
+      border-left: 3px solid var(--accent);
+      margin: 2rem 0 2rem 1.5rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+
+    .timeline-event {
+      margin-bottom: 2.2rem;
+      position: relative;
+    }
+
+    .timeline-event:before {
+      content: '';
+      position: absolute;
+      left: -2.1rem;
+      top: 0.2rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(10, 61, 98, 0.10);
+      border: 3px solid #fff;
+    }
+
+    .timeline-event h4 {
+      margin: 0 0 0.2rem 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .timeline-event p {
+      margin: 0 0 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .testimonial-card {
+      flex: 1 1 260px;
+      min-width: 260px;
+      max-width: 350px;
+      background: var(--glass);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem 1.2rem;
+      text-align: center;
+      border: 1px solid rgba(10, 61, 98, 0.06);
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 8px 32px rgba(10, 61, 98, 0.16);
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .testimonial-card p {
+      font-size: 1.05rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-card .author {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .blog-section {
+      margin: 2rem 0;
+    }
+
+    .blog-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .blog-card {
+      flex: 1 1 260px;
+      min-width: 260px;
+      max-width: 350px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid rgba(10, 61, 98, 0.06);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .blog-card:hover {
+      box-shadow: 0 8px 32px rgba(10, 61, 98, 0.16);
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .blog-card h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .blog-card p {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .blog-card a {
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: underline;
+      margin-top: auto;
+    }
+
+    .blog-card a:hover {
+      color: #0056b3;
+    }
+
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #eaeaea;
-      font-size: 0.9rem;
+      padding: 2rem 0 1.5rem 0;
+      background: var(--gradient);
+      font-size: 1.1rem;
+      color: #fff;
+      margin-top: 2rem;
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 -2px 12px rgba(10, 61, 98, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-socials a {
+      color: #fff;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-socials a:hover {
+      color: #00c6ff;
+    }
+
+    @media (max-width: 900px) {
+
+      .services,
+      .portfolio,
+      .testimonials,
+      .blog-list {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1rem 1.5rem 1rem;
+      }
+
+      header img {
+        height: 100px;
+        width: 110px;
+      }
+
+      .hero {
+        padding: 2.5rem 0.5rem 1.5rem 0.5rem;
+      }
+
+      .section,
+      .glass-card {
+        padding: 1.2rem 0.5rem;
+        margin: 1rem 0.5rem;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
-<body>
-  <header>
-    <img src="logo.png" alt="Smartdon Logo">
-    <div>
-      <h1>Abdul Rahman Hammed (Smartdon)</h1>
-      <p>Innovator | Mechatronics Engineer | Tech Visionary</p>
+
+<header>
+  <img src="ceo.png" alt="Smartdon Logo">
+  <div>
+    <h1>Abdul Rahman Hammed (Smartdon)</h1>
+    <p>Innovator | Mechatronics Engineer | Tech Visionary</p>
+  </div>
+  <nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
     </div>
-  </header>
+  </nav>
+</header>
+</header>
 
-  <div class="section">
-    <h2>About Me</h2>
-    <p>I am a 100-level Mechatronics Engineering student at Bayero University Kano and founder of Smartdon Robotics, Automation & Software Solutions (SRASS). I build innovative devices, design solutions for real-world problems, and love coding, animation, and game development.</p>
+<section class="hero" id="hero">
+  <h2>Hi, I'm Abdul Rahman Hammed (Smartdon)</h2>
+  <p>Mechatronics Engineer, Innovator, and Tech Visionary. I build smart solutions, design products, and create
+    digital experiences that make a difference.</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+    <a href="#contact" class="cta-btn">Let's Connect</a>
+    <a href="#online-class" class="cta-btn" style="background: var(--accent); color: #fff;">Join My Coding Class</a>
   </div>
+</section>
 
-  <div class="section">
-    <h2>Key Projects</h2>
-    <ul>
-      <li><strong>Aurorux</strong>: Multifunctional solar-powered device (fan, lamp, Bluetooth speaker, power bank, clock).
-      <p> <a href="aurorux.html" style="font-weight: bold; color:#0a3d6;" >View Full Aurorux Project</a></p>
-      </li>
-      <li><strong>AFDR</strong>: Automatic Flying Delivery Robot.</li>
-      <li><strong>AFC</strong>: Automatic Following Shopping Cart.</li>
-      <li><strong>Cody</strong>: AI-powered health assistant bot.</li>
-      <li><strong>Chameleon Car</strong>: Color/shape-shifting self-driving car.</li>
-      <li><strong>Nlens (Neuro Lens)</strong>: Device enabling blind individuals to "see" via neural image transfer.</li>
-      <li><strong>Universal Programming Language</strong>: Combines all languages into one powerful coding tool.</li>
-    </ul>
+<section class="glass-card" id="online-class">
+  <h2>Online Coding Class</h2>
+  <p>Want to learn coding from scratch or level up your skills? Join my interactive online coding class! I teach
+    programming fundamentals, web development, and real-world project building in a fun, practical way. All ages and
+    skill levels welcome.</p>
+  <a href="https://your-class-link.com" class="cta-btn"
+    style="background: var(--accent); color: #fff; margin-top: 1rem;">Join Now</a>
+</section>
+
+<section class="glass-card" id="about">
+  <h2>About Me</h2>
+  <p>I am a Mechatronics Engineering student at Bayero University Kano and founder of Smartdon Robotics, Automation &
+    Software Solutions (SRASS). I build innovative devices, design solutions for real-world problems, and love coding,
+    animation, and game development.</p>
+</section>
+
+<section class="glass-card" id="services">
+  <h2>What I Do</h2>
+  <div class="services">
+    <div class="service-card"><i>🤖</i>
+      <h3>Robotics & Automation</h3>
+      <p>Designing and building intelligent robots and automation systems for real-world applications.</p>
+    </div>
+    <div class="service-card"><i>💻</i>
+      <h3>Software & Web Development</h3>
+      <p>Creating modern web apps, embedded systems, and digital solutions with clean code and UI.</p>
+    </div>
+    <div class="service-card"><i>🎬</i>
+      <h3>Animation & Video</h3>
+      <p>Producing engaging animations and videos for education, marketing, and entertainment.</p>
+    </div>
+    <div class="service-card"><i>🎨</i>
+      <h3>Design & Branding</h3>
+      <p>Crafting unique graphics, logos, and brand identities for businesses and personal brands.</p>
+    </div>
   </div>
+</section>
 
-  <div class="section">
-    <h2>Skills</h2>
-    <ul>
-      <li>Robotics & Automation</li>
-      <li>Programming (Web & Embedded)</li>
-      <li>Video Editing & Animation</li>
-      <li>Graphic & Web Design</li>
-      <li>Physics & Math (HAR Laws)</li>
-    </ul>
+<section class="glass-card" id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="portfolio">
+    <div class="project-card">
+      <img src="Aurorux.png" alt="Aurorux Project">
+      <h3>Aurorux</h3>
+      <p>Multifunctional solar-powered device: fan, lamp, Bluetooth speaker, power bank, clock.</p>
+      <a href="aurorux.html">View Project</a>
+    </div>
+    <div class="project-card">
+      <img src="logo.png" alt="AFDR">
+      <h3>AFDR</h3>
+      <p>Automatic Flying Delivery Robot for smart logistics and delivery.</p>
+    </div>
+    <div class="project-card">
+      <img src="logo.png" alt="AFC">
+      <h3>AFC</h3>
+      <p>Automatic Following Shopping Cart for hands-free shopping experiences.</p>
+    </div>
+    <div class="project-card">
+      <img src="logo.png" alt="Cody">
+      <h3>Cody</h3>
+      <p>AI-powered health assistant bot for personalized health advice.</p>
+    </div>
+    <div class="project-card">
+      <img src="logo.png" alt="Chameleon Car">
+      <h3>Chameleon Car</h3>
+      <p>Color/shape-shifting self-driving car for adaptive environments.</p>
+    </div>
+    <div class="project-card">
+      <img src="logo.png" alt="Nlens">
+      <h3>Nlens (Neuro Lens)</h3>
+      <p>Device enabling blind individuals to "see" via neural image transfer.</p>
+    </div>
+    <div class="project-card">
+      <img src="logo.png" alt="Universal Programming Language">
+      <h3>Universal Programming Language</h3>
+      <p>Combines all languages into one powerful coding tool.</p>
+    </div>
   </div>
+</section>
 
-  <div class="section">
-    <h2>Contact</h2>
-    <p>Email: smartdon473@gmail.com<br>
-       Phone: +2348123488059<br>
-       Instagram/Twitter: @Smartdon (optional)</p>
+<section class="glass-card" id="experience">
+  <h2>Experience & Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-event">
+      <h4>2024 - Present</h4>
+      <p>Founder, Smartdon Robotics, Automation & Software Solutions (SRASS)</p>
+    </div>
+    <div class="timeline-event">
+      <h4>2023 - Present</h4>
+      <p>B.Eng Mechatronics Engineering, Bayero University Kano</p>
+    </div>
+    <div class="timeline-event">
+      <h4>2022 - 2023</h4>
+      <p>Freelance Web & Embedded Developer</p>
+    </div>
   </div>
+</section>
 
- 
-  <footer>
-    &copy; 2025 Smartdon Robotics, Automation and Software Solutions (SRASS)
-  </footer>
+<section class="glass-card" id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonials">
+    <div class="testimonial-card">
+      <p>“Smartdon is a true innovator. His work on Aurorux was a game changer for our community.”</p>
+      <div class="author">— Client, Aurorux Project</div>
+    </div>
+    <div class="testimonial-card">
+      <p>“His coding and robotics skills are top-notch. Highly recommended!”</p>
+      <div class="author">— Tech Partner</div>
+    </div>
+    <div class="testimonial-card">
+      <p>“Creative, reliable, and always delivers more than expected.”</p>
+      <div class="author">— Startup Founder</div>
+    </div>
+  </div>
+</section>
+
+<section class="glass-card" id="skills">
+  <h2>Skills</h2>
+  <ul>
+    <li>Robotics & Automation</li>
+    <li>Programming (Web & Embedded)</li>
+    <li>Video Editing & Animation</li>
+    <li>Graphic & Web Design</li>
+    <li>Physics & Math (HAR Laws)</li>
+  </ul>
+</section>
+
+<section class="glass-card blog-section" id="blog">
+  <h2>Latest Blog & News</h2>
+  <div class="blog-list">
+    <div class="blog-card">
+      <h4>How I Built Aurorux</h4>
+      <p>Behind the scenes of designing and engineering a multifunctional solar-powered device.</p>
+      <a href="#">Read More</a>
+    </div>
+    <div class="blog-card">
+      <h4>My Top 5 Coding Tools</h4>
+      <p>Discover the tools that boost my productivity as a developer and engineer.</p>
+      <a href="#">Read More</a>
+    </div>
+    <div class="blog-card">
+      <h4>Why Robotics is the Future</h4>
+      <p>Exploring the impact of robotics and automation on society and business.</p>
+      <a href="#">Read More</a>
+    </div>
+  </div>
+</section>
+
+<section class="glass-card" id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:smartdon473@gmail.com">smartdon473@gmail.com</a><br>
+    Phone: <a href="tel:+2348123488059">+2348123488059</a><br>
+    Instagram/Twitter: <a href="https://instagram.com/Smartdon" target="_blank">@Smartdon</a></p>
+</section>
+
+<footer>
+  <div class="footer-socials">
+    <a href="https://instagram.com/Smartdon" target="_blank" title="Instagram">&#x1F4F7;</a>
+    <a href="mailto:smartdon473@gmail.com" title="Email">&#x2709;&#xFE0F;</a>
+    <a href="tel:+2348123488059" title="Phone">&#x1F4DE;</a>
+    <a href="#" title="Twitter">&#x1F426;</a>
+  </div>
+  <div class="footer-logo">
+    <img src="logo2.png" alt="SRASS Logo">
+  </div>
+  <style>
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 1.1rem 2.6rem;
+      border-radius: 40px;
+      border: none;
+      box-shadow: 0 2px 16px rgba(10, 61, 98, 0.10);
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      outline: none;
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      margin: 0.2rem 0.2rem;
+      animation: fadeInLeft 1.2s cubic-bezier(.77, 0, .18, 1) 0.6s both;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 1px 6px rgba(10, 61, 98, 0.10);
+    }
+
+    .cta-btn:focus {
+      box-shadow: 0 0 0 3px #00c6ff55;
+    }
+
+    .cta-btn:hover,
+    .cta-btn:focus-visible {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(10, 61, 98, 0.18);
+      transform: scale(1.05);
+    }
+
+    .footer-logo {
+      margin: 1.2rem 0 0.7rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      height: 90px;
+      max-width: 220px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(10, 61, 98, 0.10);
+      background: #fff;
+      padding: 6px;
+      width: auto;
+      display: block;
+      transition: height 0.3s, max-width 0.3s;
+    }
+
+    @media (max-width: 700px) {
+      .cta-btn {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+        border-radius: 24px;
+      }
+
+      .footer-logo img {
+        height: 54px;
+        max-width: 120px;
+        border-radius: 10px;
+        padding: 2px;
+      }
+    }
+  </style>
+  <div>&copy; 2025 Smartdon Robotics, Automation and Software Solutions (SRASS)</div>
+</footer>
+
+<script>
+  // Responsive nav toggle
+  function toggleNav() {
+    var navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('open');
+  }
+  // Animate sections on scroll
+  function revealSections() {
+    const sections = document.querySelectorAll('.glass-card, .hero');
+    const trigger = window.innerHeight * 0.92;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < trigger) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('DOMContentLoaded', () => {
+    revealSections();
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+          // Close nav on mobile after click
+          document.getElementById('navLinks').classList.remove('open');
+        }
+      });
+    });
+  });
+</script>
 </body>
+
 </html>
+</head>
+
+<body>

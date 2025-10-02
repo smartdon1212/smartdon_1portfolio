@@ -1,137 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aurorux Project – Smartdon</title>
   <style>
+    :root {
+      --accent: #0a3d62;
+      --glass: rgba(255, 255, 255, 0.7);
+      --shadow: 0 4px 24px rgba(10, 61, 98, 0.08);
+      --gradient: linear-gradient(135deg, #0a3d62 0%, #00c6ff 100%);
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #fefefe;
+      background: #f7f9fa;
       color: #222;
+      min-height: 100vh;
     }
 
     header {
-      background-color: #0a3d62;
-      color: white;
-      padding: 20px;
+      background: var(--gradient);
+      color: #fff;
+      padding: 2.5rem 1rem 2rem 1rem;
       text-align: center;
+      box-shadow: var(--shadow);
+      border-radius: 0 0 32px 32px;
+      position: relative;
+      overflow: hidden;
     }
 
-header img{
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+    header img {
+      height: 110px;
+      width: 110px;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(10, 61, 98, 0.12);
+      border: 3px solid #fff;
+      background: #fff;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-    section {
-      padding: 20px;
+    header h1 {
+      margin: 0 0 0.3rem 0;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(10, 61, 98, 0.08);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .glass-card {
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      border-radius: 18px;
+      padding: 2.2rem 1.5rem;
+      margin: 2rem auto;
       max-width: 900px;
-      margin: auto;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(10, 61, 98, 0.08);
+      transition: box-shadow 0.3s, transform 0.3s;
     }
 
-    h1, h2 {
-      color: #0a3d62;
+    .glass-card:hover {
+      box-shadow: 0 8px 32px rgba(10, 61, 98, 0.16);
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    h1,
+    h2 {
+      color: var(--accent);
     }
 
     .video-container {
-      margin: 20px 0;
+      margin: 24px 0 32px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(10, 61, 98, 0.10);
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     video {
-       width: 100%;
-  max-width: 1000px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 600px;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(10, 61, 98, 0.10);
     }
 
-    .talk {
-      background-color: #f0f4f7;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-      font-style: italic;
+    /* Hide default controls */
+    video::-webkit-media-controls {
+      display: none !important;
+    }
+
+    video::-moz-media-controls {
+      display: none !important;
+    }
+
+    video::-ms-media-controls {
+      display: none !important;
+    }
+
+    video:focus {
+      outline: none;
+    }
+
+    .custom-video-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      background: var(--glass);
+      box-shadow: 0 2px 12px rgba(10, 61, 98, 0.08);
+      border-radius: 0 0 12px 12px;
+      padding: 0.7rem 1.2rem;
+      margin-top: -12px;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(6px);
+    }
+
+    .custom-video-controls button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 0.8rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 1px 4px rgba(10, 61, 98, 0.08);
+    }
+
+    .custom-video-controls button:hover {
+      background: #0056b3;
+      transform: scale(1.08);
+    }
+
+    .custom-video-controls input[type="range"] {
+      accent-color: var(--accent);
+      height: 4px;
+      border-radius: 4px;
+      background: #e0e7ef;
+      outline: none;
+      margin: 0 0.3rem;
+      width: 90px;
+      transition: background 0.2s;
+    }
+
+    .custom-video-controls input[type="range"]:focus {
+      background: #cce6ff;
     }
 
     .comment-section {
-      background-color: #eef2f3;
-      padding: 30px 20px;
-      margin-top: 40px;
-      border-radius: 10px;
+      background: var(--glass);
+      padding: 2.2rem 1.5rem;
+      margin: 2.5rem auto 0 auto;
+      border-radius: 18px;
+      max-width: 480px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(10, 61, 98, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      animation: fadeInDown 1.1s cubic-bezier(.77, 0, .18, 1) 0.2s both;
     }
 
     .comment-section h2 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #0a3d62;
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .comment-section form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .comment-section input,
     .comment-section textarea {
-      display: block;
       width: 100%;
-      max-width: 500px;
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #bbb;
-      border-radius: 6px;
-      font-size: 16px;
+      max-width: 400px;
+      margin-bottom: 0.2rem;
+      padding: 12px 14px;
+      border: 1.5px solid #bbb;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fff;
+      font-family: inherit;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(10, 61, 98, 0.04);
+    }
+
+    .comment-section input:focus,
+    .comment-section textarea:focus {
+      border: 1.5px solid var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 2px #00c6ff33;
     }
 
     .comment-section button {
-      padding: 10px 20px;
-      background-color: #0a3d62;
+      padding: 12px 36px;
+      background: var(--accent);
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 1.08rem;
       cursor: pointer;
+      box-shadow: 0 2px 8px rgba(10, 61, 98, 0.10);
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5rem;
+      letter-spacing: 0.5px;
     }
 
     .comment-section button:hover {
-      background-color: #054179;
+      background: #0056b3;
+      transform: scale(1.04);
     }
 
     .back-link {
       display: block;
-      margin-top: 30px;
+      margin: 2.5rem auto 0 auto;
       text-align: center;
     }
 
     .back-link a {
-      color: #0a3d62;
+      color: var(--accent);
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      padding: 0.6rem 1.4rem;
+      background: #f0f4f7;
+      box-shadow: 0 2px 8px rgba(10, 61, 98, 0.06);
+      transition: background 0.2s, color 0.2s;
     }
 
     .back-link a:hover {
-      text-decoration: underline;
+      background: var(--accent);
+      color: #fff;
     }
 
     footer {
       text-align: center;
-      padding: 10px;
+      padding: 1.5rem 0 1rem 0;
       background: #f8f9fa;
-      margin-top: 40px;
+      margin-top: 3rem;
       color: #444;
-      font-size: 14px;
+      font-size: 1rem;
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 -2px 12px rgba(10, 61, 98, 0.04);
+    }
+
+    .footer-logo {
+      margin: 1.2rem 0 0.7rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      height: 70px;
+      max-width: 160px;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(10, 61, 98, 0.10);
+      background: #fff;
+      padding: 4px;
+      width: auto;
+      display: block;
+      transition: height 0.3s, max-width 0.3s;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+      }
+
+      .video-container {
+        margin: 16px 0 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(10, 61, 98, 0.08);
+        padding: 0 0.5rem;
+      }
+
+      video {
+        max-width: 100vw;
+        height: 160px;
+        min-width: 0;
+      }
+
+      .custom-video-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 0.6rem 0.3rem;
+        max-width: 100vw;
+      }
+
+      .custom-video-controls input[type="range"] {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .glass-card,
+      .comment-section {
+        padding: 1.2rem 0.5rem;
+        margin: 1rem 0.5rem;
+      }
+
+      .comment-section {
+        padding: 1.1rem 0.4rem;
+        margin: 1.2rem 0.2rem 0 0.2rem;
+        max-width: 70vw;
+        border-radius: 12px;
+        box-shadow: 0 1px 6px rgba(10, 61, 98, 0.08);
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .comment-section h2 {
+        font-size: 1.1rem;
+      }
+
+      .comment-section form {
+        gap: 0.3rem;
+      }
+
+      .comment-section input,
+      .comment-section textarea {
+        max-width: 60vw;
+        font-size: 0.98rem;
+        padding: 10px 10px;
+      }
+
+      .comment-section button {
+        padding: 10px 0;
+        width: 100%;
+        font-size: 1rem;
+        max-width: 65vw;
+        border-radius: 16px;
+      }
+
+      .footer-logo img {
+        height: 40px;
+        max-width: 80px;
+        border-radius: 8px;
+        padding: 2px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .comment-section {
+        padding: 0.7rem 0.1rem;
+        margin: 0.7rem 0.1rem 0 0.1rem;
+        max-width: 80vw;
+        border-radius: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .comment-section h2 {
+        font-size: 0.98rem;
+      }
+
+      .comment-section input,
+      .comment-section textarea {
+        font-size: 0.92rem;
+        padding: 8px 6px;
+        max-width: 60vw;
+      }
+
+      .comment-section button {
+        font-size: 0.95rem;
+        padding: 8px 0;
+        border-radius: 12px;
+        max-width: 60vw;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <img src="Aurorux.png" alt="">
+    <img src="Aurorux.png" alt="Aurorux Project Logo">
     <h1>Aurorux Project</h1>
     <p>Multifunctional Device – Smartdon Robotics & Automation</p>
   </header>
 
-  <section>
+  <section class="glass-card">
     <h2>About Aurorux</h2>
     <p>
-      Aurorux is a multifunctional, solar-powered device that brings together five powerful features: a fan, lamp, Bluetooth speaker, power bank, and clock. Designed for adventurers, travelers, and areas with limited power supply, Aurorux solves real-life challenges in a compact and elegant way.
+      Aurorux is a multifunctional, solar-powered device that brings together five powerful features: a fan, lamp,
+      Bluetooth speaker, power bank, and clock. Designed for adventurers, travelers, and areas with limited power
+      supply, Aurorux solves real-life challenges in a compact and elegant way.
     </p>
 
     <div class="video-container">
@@ -139,18 +439,36 @@ header img{
         <source src="Aurorux.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <div class="custom-video-controls" id="videoControls">
+        <button id="playPause" aria-label="Play/Pause">▶️</button>
+        <input type="range" id="progressBar" value="0" min="0" max="100" step="0.1">
+        <button id="muteUnmute" aria-label="Mute/Unmute">🔊</button>
+        <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1">
+        <button id="fullscreen" aria-label="Fullscreen">⛶</button>
+      </div>
     </div>
 
     <div class="talk">
       <h3>My Talk on Aurorux</h3>
       <p>
-        "Aurorux came from a simple problem — how to survive in places with no light — and I brought these functions together to run on both solar and electricity. It's for camp, students, and anyone who wants power, light."
-      <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-       &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;~ @Smartdon</p>
+        "Aurorux came from a simple problem — how to survive in places with no light — and I brought these functions
+        together to run on both solar and electricity. It's for camp, students, and anyone who wants power, light."
+        <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp;~ @Smartdon
+      </p>
     </div>
   </section>
 
-  <section id="comments" class="comment-section">
+  <section id="comments" class="comment-section glass-card">
     <h2>Leave a Comment</h2>
     <form action="https://formspree.io/f/xnnvyobz" method="POST">
       <input type="text" name="name" placeholder="Your Name Here" required />
@@ -165,8 +483,72 @@ header img{
   </div>
 
   <footer>
+    <div class="footer-logo">
+      <img src="logo2.png" alt="SRASS Logo">
+    </div>
     © 2025 Smartdon Robotics, Automation and Software Solutions (SRASS)
   </footer>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const video = document.querySelector('.video-container video');
+      const playPause = document.getElementById('playPause');
+      const progressBar = document.getElementById('progressBar');
+      const muteUnmute = document.getElementById('muteUnmute');
+      const volumeBar = document.getElementById('volumeBar');
+      const fullscreen = document.getElementById('fullscreen');
+
+      // Play/Pause toggle
+      playPause.addEventListener('click', function () {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+      video.addEventListener('play', function () {
+        playPause.textContent = '⏸️';
+      });
+      video.addEventListener('pause', function () {
+        playPause.textContent = '▶️';
+      });
+
+      // Progress bar
+      video.addEventListener('timeupdate', function () {
+        progressBar.value = (video.currentTime / video.duration) * 100 || 0;
+      });
+      progressBar.addEventListener('input', function () {
+        video.currentTime = (progressBar.value / 100) * video.duration;
+      });
+
+      // Mute/Unmute
+      muteUnmute.addEventListener('click', function () {
+        video.muted = !video.muted;
+        muteUnmute.textContent = video.muted ? '🔇' : '🔊';
+      });
+      video.addEventListener('volumechange', function () {
+        muteUnmute.textContent = video.muted ? '🔇' : '🔊';
+        volumeBar.value = video.volume;
+      });
+
+      // Volume bar
+      volumeBar.addEventListener('input', function () {
+        video.volume = volumeBar.value;
+        video.muted = volumeBar.value == 0;
+      });
+
+      // Fullscreen
+      fullscreen.addEventListener('click', function () {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
